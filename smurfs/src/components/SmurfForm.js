@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addSmurf } from "../actions";
 
 function SmurfForm() {
     const [input, setInput] = useState({ name: "", age: "", height: "" });
+    const dispatch = useDispatch();
+
     const handleInputChange = event => {
         setInput({...input, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = event => {
         event.preventDefault();
+        dispatch(addSmurf({...input, height: `$input.height}cm`, id: Date.now() }))
         setInput({ name: "", age: "", height: "" });
     }
 
