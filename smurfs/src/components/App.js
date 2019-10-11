@@ -3,6 +3,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSmurfs } from "../actions";
 import SmurfForm from "./SmurfForm";
+import Smurf from "./Smurf";
 
 function App () {
   const dispatch = useDispatch();
@@ -30,11 +31,7 @@ function App () {
         <SmurfForm/>
         {smurfs.map(smurf => {
           return(
-            <div>
-              <h2>{smurf.name}</h2>
-              <p>Age: {smurf.age} years</p>
-              <p>Height: {smurf.height}</p>
-              </div>
+            <Smurf key={smurf.id} smurf={smurf}/>
           )
         })}
       </div>
