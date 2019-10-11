@@ -2,20 +2,27 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSmurfs } from "../actions";
-import SmurfForm from './SmurfForm';
+import SmurfForm from "./SmurfForm";
 
 function App () {
   const dispatch = useDispatch();
   const smurfs = useSelector(state => state.smurfs);
   const isFetching = useSelector(state => state.isFetching);
+  const isPosting = useSelector(state => state.isPosting);
   const error = useSelector(state => state.error);
 
   useEffect(() => {
     dispatch(getSmurfs());
-  }, [dispatch])
+  }, [dispatch]);
 
-  if (isFetching) return <h2>loading...</h2>
-  if (error) return <img src={`https://http.cat/${error}`} alt={`error code: ${error}`}/>
+  if (isFetching) return <h2>loading...</h2>;
+
+  if (isPosting) return <h2>adding smurf...</h2>;
+
+  if (error) 
+    return (
+    <img src={`https://http.cat/${error}`} alt={`error code: ${error}`}/>
+    );
   
     return (
       <div className="App">

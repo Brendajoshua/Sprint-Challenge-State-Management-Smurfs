@@ -7,14 +7,16 @@ function SmurfForm() {
     const dispatch = useDispatch();
 
     const handleInputChange = event => {
-        setInput({...input, [event.target.name]: event.target.value})
-    }
+        setInput({ ...input, [event.target.name]: event.target.value });
+    };
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(addSmurf({...input, height: `$input.height}cm`, id: Date.now() }))
+        dispatch(
+            addSmurf({...input, height: `$input.height}cm`, id: Date.now() })
+            );
         setInput({ name: "", age: "", height: "" });
-    }
+    };
 
     return(
         <form onSubmit={handleSubmit}>
@@ -26,6 +28,16 @@ function SmurfForm() {
                 onchange={handleInputChange}
                 type="text"
                 placeholder="enter name.."
+                />
+            </label>
+            <label>
+                Age:
+                <input
+                name="age"
+                value={input.age}
+                onChange={handleInputChange}
+                type="number"
+                placeholder="enter age.."
                 />
             </label>
             <label>

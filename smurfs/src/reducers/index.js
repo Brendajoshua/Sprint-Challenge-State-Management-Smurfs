@@ -11,42 +11,48 @@ const initialState = {
     smurfs: [],
     isFetching: false,
     isPosting: false,
-    error: null,
-}
+    error: null
+};
 
 export const reducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case FETCH_START:
             return{
                 ...state,
                 isFetching: true,
-                error: null,
-            }
+                error: null
+            };
         case FETCH_SUCCESS:
             return{
                 ...state,
                 smurfs: [...action.payload],
                 isFetching: false
-            } 
+            }; 
         case FETCH_ERROR:
             return{
                 ...state,
                 isFetching: false,
                 error: action.payload
-            }
+            };
         case POST_START:
             return{
                 ...state,
                 isPosting: true,
-                error: null,
-            }
+                error: null
+            };
         case POST_SUCCESS:
             return{
                 ...state,
                 smurfs: [...action.payload],
                 isPosting: false
-            }
+            };
+        case POST_ERROR:
+            return{
+                ...state,
+                isPosting: false,
+                error: action.payload
+            };
         default:
             return state;
     }
-}
+};

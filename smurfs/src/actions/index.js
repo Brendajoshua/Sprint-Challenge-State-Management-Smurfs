@@ -9,22 +9,25 @@ export const getSmurfs = () => dispatch => {
     axios
     .get('http://localhost:3333/smurfs')
     .then(res => {
-        dispatch({ type: FETCH_SUCCESS, payload: res.data })
+        dispatch({ type: FETCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
-        dispatch({ type: FETCH_ERROR, payload: err.response.status})
+        dispatch({ type: FETCH_ERROR, payload: err.response.status});
     });
-}
+};
 
 export const POST_START = "POST_START";
 export const POST_SUCCESS = "POST_SUCCESS";
 export const POST_ERROR = "POST_ERROR";
 
-export const addSmurf = (newSmurf) => dispatch => {
+export const addSmurf = newSmurf => dispatch => {
     dispatch({ type: POST_START });
-    axios.post('http://localhost:3333/smurfs', newSmurf)
-    .then(res => {
-        dispatch({ type: POST_SUCCESS, payload: res.data})
+    axios
+        .post('http://localhost:3333/smurfs', newSmurf)
+        .then(res => {
+            dispatch({ type: POST_SUCCESS, payload: res.data});
     })
-    .catch(err => console.log(err))
-}
+        .catch(err => {
+            dispatch({ type: POST_ERROR, payload: err.response.status});
+    });
+};
