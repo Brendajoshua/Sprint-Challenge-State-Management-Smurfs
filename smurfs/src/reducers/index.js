@@ -7,14 +7,20 @@ import {
     POST_ERROR,
     DELETE_START,
     DELETE_SUCCESS,
-    DELETE_ERROR
+    DELETE_ERROR,
+    SET_SMURF_TO_EDIT,
+    PUT_START,
+    PUT_SUCCESS,
+    PUT_ERROR
 } from "../actions";
 
 const initialState = {
     smurfs: [],
+    smurfToEdit: null,
     isFetching: false,
     isPosting: false,
     isDeleting: false,
+    isPutting: false,
     error: null
 };
 
@@ -59,21 +65,45 @@ export const reducer = (state = initialState, action) => {
         case DELETE_START:
             return {
             ...state,
-            isDeleteing: true,
+            isDeleting: true,
             error: null
           };
         case DELETE_SUCCESS:
             return {
           ...state,
           smurfs: [...action.payload],
-          isDeleteing: false
+          isDeleting: false
         };
         case DELETE_ERROR:
             return {
           ...state,
-          isDeleteing: false,
+          isDeleting: false,
           error: action.payload
         };
+        case SET_SMURF_TO_EDIT:
+            return{
+                ...state,
+                smurfToEdit: action.payload
+            }
+        case PUT_START:
+            return {
+            ...state,
+            isPutting: true,
+            error: null
+        };
+        case PUT_SUCCESS:
+            return {
+            ...state,
+            smurfs: [...action.payload],
+            isPutting: false
+        };
+        case PUT_ERROR:
+            return {
+            ...state,
+            isPutting: false,
+            error: action.payload
+        };
+            
         default:
             return state;
     }
