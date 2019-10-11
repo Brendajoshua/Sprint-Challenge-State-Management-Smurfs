@@ -1,7 +1,18 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-class App extends Component {
-  render() {
+import { useDispatch, useSelector } from "react-redux";
+import { getSmurfs } from "../actions";
+
+function App () {
+  const dispatch = useDispatch();
+  const isFetching = useSelector(state => state.isFetching);
+
+  useEffect(() => {
+    dispatch(getSmurfs());
+  }, [dispatch])
+
+  if (isFetching) return <h2>loading...</h2>
+  
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
@@ -11,6 +22,6 @@ class App extends Component {
       </div>
     );
   }
-}
+
 
 export default App;
