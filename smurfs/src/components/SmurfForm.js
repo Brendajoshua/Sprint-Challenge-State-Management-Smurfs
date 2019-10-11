@@ -34,7 +34,7 @@ function SmurfForm() {
                 <input
                 name="name"
                 value={input.name}
-                onchange={handleInputChange}
+                onChange={handleInputChange}
                 type="text"
                 placeholder="enter name.."
                 />
