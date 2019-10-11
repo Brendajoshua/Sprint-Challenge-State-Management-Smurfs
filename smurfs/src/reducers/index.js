@@ -7,6 +7,7 @@ import {
 const initialState = {
     smurfs: [],
     isFetching: false,
+    error: null,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -14,7 +15,8 @@ export const reducer = (state = initialState, action) => {
         case FETCH_START:
             return{
                 ...state,
-                isFetching: true
+                isFetching: true,
+                error: null,
             }
         case FETCH_SUCCESS:
             return{
@@ -22,6 +24,12 @@ export const reducer = (state = initialState, action) => {
                 smurfs: [...action.payload],
                 isFetching: false
             } 
+        case FETCH_ERROR:
+            return{
+                ...state,
+                isFetching: false,
+                error: action.payload
+            }
         default:
             return state;
     }
