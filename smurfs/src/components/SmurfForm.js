@@ -23,6 +23,10 @@ function SmurfForm() {
         setInput({ name: "", age: "", height: "" });
     };
 
+    useEffect(() => {
+        if (smurfToEdit) setInput({...smurfToEdit});
+      }, [smurfToEdit])
+
     return(
         <form onSubmit={handleSubmit}>
             <label>
@@ -57,7 +61,7 @@ function SmurfForm() {
             </label>
             <button>{ smurfToEdit ? 'edit smurf' : 'add smurf' }</button>
         </form>
-    )
+    );
 }
 
 export default SmurfForm;
